@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>PRAK SIG WEB</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: iPortfolio
+  * Updated: Jul 27 2023 with Bootstrap v5.3.1
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.1/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+  <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+  <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+  <script language="javascript">
+    var map;
+
+    function init() {
+       map = new L.Map('map');
+       L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+          maxZoom: 18
+       }).addTo(map);
+       map.attributionControl.setPrefix(''); // Don't show the 'Powered by Leaflet' text.
+
+       // map view before we get the location
+       map.setView(new L.LatLng(51.505, -0.09), 13);
+    }
+
+    function onLocationFound(e) {
+       var radius = e.accuracy / 2;
+       var location = e.latlng
+       L.marker(location).addTo(map)
+       L.circle(location, radius).addTo(map);
+    }
+
+    function onLocationError(e) {
+       alert(e.message);
+    }
+
+    function getLocationLeaflet() {
+       map.on('locationfound', onLocationFound);
+       map.on('locationerror', onLocationError);
+
+       map.locate({setView: true, maxZoom: 16});
+    }
+  </script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.1/dist/leaflet.js" integrity="sha256-NDI0K41gVbWqfkkaHj15IzU7PtMoelkzyKp8TOaFQ3s=" crossorigin=""></script>
+    <style>
+      html,
+      body,
+      section {
+        position: relative;
+        height: 100%;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      h1 {
+      }
+
+      #map {
+        width: 800px;
+        height: 400px;
+      }
+    </style>
+
+
+
+</head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="index.html">Rico Adi Pratama</a></h1>
+        <div class="social-links mt-3 text-center">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Geodetic</span></a></li>
+          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Favorit</span></a></li>
+          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="hero-container" data-aos="fade-in">
+      <h1>Rico Adi Pratama</h1>
+      <p>I'm <span class="typed" data-typed-items="Engineer, Surveyor, Photographer"></span></p>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>About</h2>
+          <p>I'm a geodetic engineering. Geodetic engineering disciplines about measurement and representation of the Earth and other object celestial, including respective gravitational fields, in three-dimensional space when changes with time.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4" data-aos="fade-right">
+            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+            <h3>Undergraduate of Geodetic Engineering</h3>
+            <div class="row">
+              <div class="col-lg-6">
+                <table width="450" border="1" cellspacing="5">
+                  <tr >
+                    <td style="border: 1px solid black;" width="200" bordercolor="#000000" bgcolor="#149DDD"><div align="center" style="color:#173B6C"><strong>Identitas</strong></div></td>
+                    <td style="border: 1px solid black;"width="250" bordercolor="#000000" bgcolor="#149DDD"><div align="center" style="color:#173B6C"><strong>Keterangan</strong></div></td>
+                  </tr>
+                  <tr>
+                    <td style="border: 1px solid black;"bordercolor="#000000">Nama </td>
+                    <td style="border: 1px solid black;"bordercolor="#000000">Rico Adi Pratama </td>
+                  </tr>
+                  <tr>
+                    <td style="border: 1px solid black;"bordercolor="#000000">NIM </td>
+                    <td style="border: 1px solid black;"bordercolor="#000000">21/473419/TK/52175</td>
+                  </tr>
+                  <tr>
+                    <td style="border: 1px solid black;"bordercolor="#000000">Alamat</td>
+                    <td style="border: 1px solid black;"bordercolor="#000000">Kediri</td>
+                  </tr>
+                  <tr>
+                    <td style="border: 1px solid black;"bordercolor="#000000">Tanggal Lahir</td>
+                    <td style="border: 1px solid black;"bordercolor="#000000"> 16 Januari 2002</td>
+                  </tr>
+                  <tr>
+                    <td style="border: 1px solid black;"bordercolor="#000000">Pendidikan </td>
+                    <td style="border: 1px solid black;"bordercolor="#000000">S1 Teknik Geodesi</td>
+                  </tr>
+                </table>
+                <br>
+
+                <h3>Validasi Pekerjaan</h3>
+                  Nama     : <input id="nama" type="text"/><br><br>
+                  Password : <input id="password" type="text"/><br><br>
+                  E-mail   : <input id="email" type="email"/><br><br>
+                  <button onclick="klik()">Klik</button><br>
+                  <p id="isi"></p>
+                
+                <!-- Script untuk memanggil isi form-->
+                <script>
+                  function klik() {
+                    var nama, alamat, password;
+                    nama = document.getElementById("nama").value;
+                    alamat = document.getElementById("email").value;
+                    password = document.getElementById("password").value;
+                    
+                    if (password !=="Selesai") {
+                      alert("password salah");
+                      return;
+                      }
+                    
+                    
+                    var txt="Hello " + nama +", pekerjaanmu telah selesai";
+                    document.getElementById("isi").innerHTML=txt;}
+                  </script>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Facts Section ======= -->
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Geodetic Engineering UGM</h2>
+          <p>Lulusan program studi ini menerapkan dan mengembangkan iptek yang berbasis pada peralatan modern geodesi dan geomatika, seperti melakukan survei, remote sending, pengukuran variabel geodesi dan mengolah data informasi kebumian untuk kepentingan pemetaan dan penyusunan sistem informasi.<a href="https://geodesi.ugm.ac.id/"> Selengkapnya...</a></p>
+        </div>
+    </section><!-- End Facts Section -->
+
+    <!-- ======= Skills Section ======= -->
+    <section id="portfolio" class="portfolio section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Tempat Favorit</h2>
+        </div>
+        <center>
+          <div id="map"></div>
+        </center>
+    
+        <script>
+          var busIcon = L.icon({
+            iconUrl: 'https://cdn-icons-png.flaticon.com/512/1675/1675404.png',
+            iconSize: [20, 20],
+            iconAnchor: [10, 10],
+            popupAnchor: [0, 0],
+          });
+    
+          var a = L.marker([-7.77335,110.37999], { icon: busIcon }).bindPopup('<center><img src="images/masjid.jpg" width="300px" height="200px" title="Masjid Kampus UGM" alt="Masjid Kampus UGM"></center><h5>Masjid Kampus UGM</h5>link tempat: <a href="https://maps.app.goo.gl/7jfcnzSzmLZS9kGx5">Masjid Kampus UGM</a>'),
+              b = L.marker([-7.77022,110.37789], { icon: busIcon }).bindPopup('<center><img src="images/GSP.jpg" width="300px" height="200px" title="Grha Sabha Pramana" alt="Grha Sabha Pramana"></center><h5>Grha Sabha Pramana</h5>link tempat: <a href="https://maps.app.goo.gl/GBQsbd74NL3kikj17">Grha Sabha Pramana</a>'),
+              c = L.marker([-7.76929,110.37813], { icon: busIcon }).bindPopup('<center><img src="images/perpustakaan.png" width="300px" height="200px" title="Perpustakaan UGM" alt="Perpustakaan UGM"></center><h5>Perpustakaan UGM</h5>link tempat: <a href="https://maps.app.goo.gl/8BEYUnxPdjzLiPAe8">Perpustakaan UGM</a>'),
+              d = L.marker([-7.76601,110.37391], { icon: busIcon }).bindPopup('<center><img src="images/teknik.jpg" width="300px" height="200px" title="Tugu Teknik UGM" alt="Tugu Teknik UGM"></center><h5>Tugu Teknik UGM</h5>link tempat: <a href="https://maps.app.goo.gl/4biKiLvzCM6fcvAz8">Tugu Teknik UGM</a>'),
+              e = L.marker([-7.77073,110.38150], { icon: busIcon }).bindPopup('<center><img src="images/wisdom.jpg" width="300px" height="200px" title="Wisdom Park UGM" alt="Wisdom Park UGM"></center><h5>Wisdom Park UGM</h5>link tempat: <a href="https://maps.app.goo.gl/NgsHrwJzTNVCPpvx5">Wisdom Park UGM</a>');
+          var bus = L.layerGroup([a,b,c,d,e]);
+    
+          var osm = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 20,
+            attribution: "© OpenStreetMap",
+          });
+    
+          var osm2 = L.tileLayer("https://mt0.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
+            maxZoom: 20,
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+          });
+    
+          var map = L.map("map", {
+            center: [-7.77022,110.37789],
+            zoom: 14,
+            layers: [osm, bus],
+          });
+    
+          var baseMaps = {
+            OpenStreetMap: osm,
+            SatelitESRI: osm2,
+          };
+    
+          var overlayMaps = {
+            Tempat_Favorit: bus,
+          };
+    
+          var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+          var baseMaps = {
+            OpenStreetMap: osm,
+            "<span style='color: red'>OpenStreetMap.maps</span>": osm2,
+          };
+          
+        L.Control.geocoder().addTo(map);
+        </script>
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+          crossorigin="anonymous">
+        </script>
+    
+        <div class="row skills-content">
+          <div class="col-lg-6" data-aos="fade-up">
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Skills Section -->
+
+    <!-- ======= Resume Section ======= -->
+    <section id="resume" class="resume">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Resume</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-up">
+            <h3 class="resume-title">Sumary</h3>
+            <div class="resume-item pb-0">
+              <h4>Rico Adi Pratama</h4>
+              <p><em>I'm a geodetic engineering.</em></p>
+              <ul>
+                <li>Kediri, Indonesia</li>
+                <li>+62 812 1703 9850</li>
+                <li>rico.adi.pratama@mail.ugm.ac.id</li>
+              </ul>
+            </div>
+
+            <h3 class="resume-title">Education</h3>
+            <div class="resume-item">
+              <h4>Gadjah Madha University</h4>
+              <h5>2021 - Present</h5>
+              <p><em>Yogyakarta</em></p>
+              <p>Students currently studying for an undergraduate degree in geodetic engineering, 3.52/4.00.</p>
+            </div>
+            <div class="resume-item">
+              <h4>SMAN 2 Kediri</h4>
+              <h5>2018 - 2021</h5>
+              <p><em>Kota Kediri</em></p>
+              <p>High School Alumni majoring in Science,93.33/100.</p>
+            </div>
+
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="resume-title">Professional Experience</h3>
+            <div class="resume-item">
+              <h4>Head of Division</h4>
+              <h5>2023 - Present</h5>
+              <p><em>Yogyakarta </em></p>
+              <p>I'm a head of division learning center in Keluarga Mahasiwa Teknik Geodesi (KMTG)</p>
+            </div>
+            <div class="resume-item">
+              <h4>Surveyor of Bina Marga</h4>
+              <h5>2023 - 2023</h5>
+              <p><em>Kota Kediri</em></p>
+              <p>I'm a surveyor in Bina Marga Kediri city. Bina Marga has the task of organizing the formulation and implementation of policies in the field of road administration in accordance with statutory provisions.</p>
+            </div>
+            <div class="resume-item">
+              <h4>Surveyor of BPN</h4>
+              <h5>2022 - 2022</h5>
+              <p><em>Kabupaten Kediri</em></p>
+              <p>I'm a surveyor in Badan Pertanahan Nasional (BPN) Kediri regency. BPN has the task of carrying out government duties in the land sector in accordance with statutory provisions.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Resume Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+        </div>
+
+        <div class="row" data-aos="fade-in">
+
+          <div class="col-lg-5 d-flex align-items-stretch">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>Kediri, Indonesia</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>rico.adi.pratama@mail.ugm.ac.id</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Call:</h4>
+                <p>+62 812 1703 9850</p>
+              </div>
+
+              <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1397.7565257074639!2d111.96332393648869!3d-7.741736053307162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwNDQnMzAuNyJTIDExMcKwNTcnNTIuMiJF!5e0!3m2!1sid!2sid!4v1694453106597!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+          </div>
+
+          <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name">Your Name</label>
+                  <input type="text" name="name" class="form-control" id="name" required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="name">Your Email</label>
+                  <input type="email" class="form-control" name="email" id="email" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name">Subject</label>
+                <input type="text" class="form-control" name="subject" id="subject" required>
+              </div>
+              <div class="form-group">
+                <label for="name">Message</label>
+                <textarea class="form-control" name="message" rows="10" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>iPortfolio</span></strong>
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
+>>>>>>> ea678e4 (first commit)
